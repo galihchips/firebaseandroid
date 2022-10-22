@@ -1,10 +1,12 @@
 package com.upj.auth
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -45,7 +47,34 @@ class MainActivity : AppCompatActivity() {
         }
         btnRegister = findViewById(R.id.btnRegister)
         btnRegister.setOnClickListener {
-            intent(this@MainActifity, RegisterActivity::class.java)
+            Intent(this@MainActivity, RegisterActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+    }
+
+    private fun loginUser(email : String, password : String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) {
+                if (it.isSuccessful){
+                    Intent(this@MainActivity, HomeActivity::class.java).also {
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(it)
+                        txtEmail.text = ""
+                        txtPassword.text = ""
+                    }
+                } else {
+                    Toast.makeText(this, it.exception?.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+    override fun onStart() {
+        super.onStart()
+        if (auth.currentUser !== null) {
+            Intent(this@MainActivity, HomeActivity::class.java).also {
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(it)
+            }
         }
     }
 }

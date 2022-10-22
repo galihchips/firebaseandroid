@@ -1,9 +1,11 @@
 package com.upj.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 
@@ -44,6 +46,33 @@ class RegisterActivity: AppCompatActivity() {
             }
             registerUser(email, password)
         }
+        btnLogin.setOnClickListener {
+            finish();
+            super.onBackPressed();
+        }
 
+    }
+
+    private fun registerUser(email : String, password : String) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this){
+                if (it.isSuccessful){
+                    Intent(this@RegisterActivity, MainActivity::class.java).also {
+                        startActivity(it)
+                    }
+                } else {
+                    Toast.makeText(this, it.exception?.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (auth.currentUser !== null) {
+            Intent(this@RegisterActivity, HomeActivity::class.java).also {
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(it)
+            }
+        }
     }
 }
