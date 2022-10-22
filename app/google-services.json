@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "956406850420",
+    "project_id": "upj-firebase-83872",
+    "storage_bucket": "upj-firebase-83872.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:956406850420:android:da0a4bdb3c4e58750c8221",
+        "android_client_info": {
+          "package_name": "com.upj.upjfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "956406850420-tcg5n369n1n30us24idhf4rm6s756lg1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC37Hh2xI-1YMquC1R03RnV7RtGRIAE6HI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "956406850420-tcg5n369n1n30us24idhf4rm6s756lg1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
