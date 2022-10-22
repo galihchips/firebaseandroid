@@ -15,7 +15,7 @@ class RegisterActivity: AppCompatActivity() {
     private  lateinit var txtEmail : TextView
     private  lateinit var txtPassword : TextView
     private  lateinit var auth : FirebaseAuth
-
+    private lateinit var txtalreadyHaveAcc : TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -23,8 +23,8 @@ class RegisterActivity: AppCompatActivity() {
         txtEmail = findViewById(R.id.etEmailReg)
         txtPassword = findViewById(R.id.etPasswordReg)
         btnSimpan = findViewById(R.id.btnSimpan)
-        btnLogin = findViewById(R.id.btnLoginReg)
 
+        txtalreadyHaveAcc = findViewById(R.id.tvAlreadyHaveAccount)
         btnSimpan.setOnClickListener {
             val email = txtEmail.text.toString().trim()
             val password = txtPassword.text.toString().trim()
@@ -46,7 +46,7 @@ class RegisterActivity: AppCompatActivity() {
             }
             registerUser(email, password)
         }
-        btnLogin.setOnClickListener {
+        txtalreadyHaveAcc.setOnClickListener {
             finish();
             super.onBackPressed();
         }

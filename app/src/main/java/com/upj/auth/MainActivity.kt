@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     private  lateinit var auth : FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.login_main)
         auth = FirebaseAuth.getInstance()
         txtEmail = findViewById(R.id.etEmail)
         txtPassword = findViewById(R.id.etPassword)
