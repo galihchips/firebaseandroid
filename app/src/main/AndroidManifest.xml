@@ -19,7 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".HomeActivity" />
+
+        <activity android:name=".MainListActivity" />
+        <activity android:name=".AddCatalog" />
     </application>
 
 </manifest>

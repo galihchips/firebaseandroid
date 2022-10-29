@@ -3,6 +3,7 @@ package com.upj.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.TextView
@@ -57,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
                 if (it.isSuccessful){
-                    Intent(this@MainActivity, HomeActivity::class.java).also {
+                    Intent(this@MainActivity, MainListActivity::class.java).also {
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(it)
                         txtEmail.text = ""
@@ -71,7 +72,7 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if (auth.currentUser !== null) {
-            Intent(this@MainActivity, HomeActivity::class.java).also {
+            Intent(this@MainActivity, MainListActivity::class.java).also {
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(it)
             }
