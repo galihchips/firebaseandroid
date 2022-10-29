@@ -22,8 +22,8 @@ class CatalogAdapter (val mContext : Context, val layoutResId : Int, val catalog
         tvEdit.setOnClickListener{
             showUpdateDialog(catalog)
         }
-        tvTitleBook.text = catalog.nim
-        tvDescBook.text = catalog.name
+        tvTitleBook.text = catalog.title
+        tvDescBook.text = catalog.desc
         return view
     }
     private fun showUpdateDialog(catalog: Catalog){
@@ -31,10 +31,10 @@ class CatalogAdapter (val mContext : Context, val layoutResId : Int, val catalog
         builder.setTitle("Edit Data")
         val inflater = LayoutInflater.from(mContext)
         val view = inflater.inflate(R.layout.update_dialog, null)
-        val txtNim : TextView = view.findViewById(R.id.etNim)
-        val txtName : TextView = view.findViewById(R.id.etName)
-        txtNim.setText(catalog.nim)
-        txtName.setText(catalog.name)
+        val txtNim : TextView = view.findViewById(R.id.etTitle)
+        val txtName : TextView = view.findViewById(R.id.etDesc)
+        txtNim.setText(catalog.title)
+        txtName.setText(catalog.desc)
 
         builder.setView(view)
         builder.setPositiveButton("Update") {

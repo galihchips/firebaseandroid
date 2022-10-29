@@ -3,12 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/galih/AndroidStudioProjects/Auth/app/src/main/res/layout/activity_desc_book.xml" value="0.25" />
         <entry key="..\:/Users/galih/AndroidStudioProjects/Auth/app/src/main/res/layout/activity_home.xml" value="0.25" />
-        <entry key="..\:/Users/galih/AndroidStudioProjects/Auth/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/galih/AndroidStudioProjects/Auth/app/src/main/res/layout/activity_main.xml" value="0.16" />
         <entry key="..\:/Users/galih/AndroidStudioProjects/Auth/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Users/galih/AndroidStudioProjects/Auth/app/src/main/res/layout/activity_tambah_matakuliah.xml" value="0.22" />
-        <entry key="..\:/Users/galih/AndroidStudioProjects/Auth/app/src/main/res/layout/item_data.xml" value="0.16485507246376813" />
+        <entry key="..\:/Users/galih/AndroidStudioProjects/Auth/app/src/main/res/layout/item_data.xml" value="0.33" />
         <entry key="..\:/Users/galih/AndroidStudioProjects/Auth/app/src/main/res/layout/item_mtk.xml" value="0.16485507246376813" />
+        <entry key="..\:/Users/galih/AndroidStudioProjects/Auth/app/src/main/res/layout/update_dialog.xml" value="0.16485507246376813" />
       </map>
     </option>
   </component>

@@ -4,10 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ListView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -18,6 +15,7 @@ class MainListActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var txtTitleBook : EditText
     private lateinit var txtDescBook : EditText
+    private lateinit var txtUsername : TextView
     private lateinit var btnSave : Button
     private lateinit var btnLogout : Button
     private lateinit var listCatalog : ListView
@@ -28,15 +26,18 @@ class MainListActivity : AppCompatActivity(), View.OnClickListener {
         auth = FirebaseAuth.getInstance()
         val userProfile: String = auth.currentUser?.email.toString()
         Log.d("valueeeee", userProfile)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         ref = FirebaseDatabase.getInstance().getReference("dbcatalog")
+        txtUsername = findViewById(R.id.tvEmailUser)
         txtTitleBook = findViewById(R.id.bookTitle)
         txtDescBook = findViewById(R.id.descBook)
         btnSave = findViewById(R.id.btnSave)
         listCatalog = findViewById(R.id.lvCatalog)
         btnSave.setOnClickListener(this)
         btnLogout = findViewById(R.id.btnLogout)
+        txtUsername.setText(userProfile)
         btnLogout.setOnClickListener {
             AlertDialog.Builder(this)
                 .setMessage("Are you sure want to logout?")
@@ -78,8 +79,8 @@ class MainListActivity : AppCompatActivity(), View.OnClickListener {
         listCatalog.setOnItemClickListener{ parent, view, position, id ->
             val catalog = catalogList.get(position)
             val intent = Intent(this@MainListActivity, AddCatalog::class.java)
-            intent.putExtra(AddCatalog.EXTRA_ID, catalog.nim)
-            intent.putExtra(AddCatalog.EXTRA_NAME, catalog.name)
+            intent.putExtra("title", catalog.title)
+            intent.putExtra("desc", catalog.desc)
             startActivity(intent)
         }
     }
@@ -88,20 +89,20 @@ class MainListActivity : AppCompatActivity(), View.OnClickListener {
         saveData()
     }
     private fun saveData() {
-        val nim : String = txtTitleBook.text.toString().trim()
-        val name : String = txtDescBook.text.toString().trim()
-        if (nim.isEmpty()) {
+        val title : String = txtTitleBook.text.toString().trim()
+        val desc : String = txtDescBook.text.toString().trim()
+        if (title.isEmpty()) {
             txtTitleBook.error = "Title tidak boleh kosong"
         }
-        if (name.isEmpty()) {
+        if (desc.isEmpty()) {
             txtDescBook.error = "Desc tidak boleh kosong"
         }
         val ref = FirebaseDatabase.getInstance().getReference("dbcatalog")
-        val mhsId = ref.push().key
-        val mhs = Catalog(mhsId!!,nim,name)
-        if (mhsId !== null) {
-            if (!nim.isEmpty() && !name.isEmpty()) {
-                ref.child(mhsId).setValue(mhs).addOnCompleteListener{
+        val catalogId = ref.push().key
+        val mhs = Catalog(catalogId!!,title,desc)
+        if (catalogId !== null) {
+            if (!title.isEmpty() && !desc.isEmpty()) {
+                ref.child(catalogId).setValue(mhs).addOnCompleteListener{
                     txtTitleBook.setText("")
                     txtDescBook.setText("")
                     Toast.makeText(applicationContext, "Data Successfully Saved", Toast.LENGTH_SHORT).show()
